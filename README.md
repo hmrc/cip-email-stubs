@@ -6,7 +6,7 @@
 Backend stub to mock downstream services, currently the stub mocks the following services:
 - [GovNotify](https://www.notifications.service.gov.uk/) - sends emails to citizens
 
-The default port for cip-email-stubs is 6099.
+The default port for cip-email-stubs is 6199.
 
 #### Default ports for related services
 ```
@@ -84,7 +84,7 @@ curl \
   --header 'Content-Type: application/json' \
   --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmNmEzYTQwZC0yOWIyLTQ2ZjUtYmNkMS0zNmE0ZjY4MzcxNzEiLCJpYXQiOjE2NTgzMTU5MDV9.HdKMVoNm4S3353SvFvjaktb8J5yKsFATsyMjjRDlNxg' \
   --data '{"email":"...","template_id":"dce5ac8a-0970-41a0-b993-bde1beab5825","personalisation":{"clientServiceName":"cip-email-service","passCode":"BTXDYC","timeToLive":"1"}}' \
-  'http://localhost:6099/v2/notifications/email'
+  'http://localhost:6199/v2/notifications/email'
 ```
 ##### Using jenkins script
 ```
@@ -103,7 +103,7 @@ curl \
   --verbose \
   --request GET \
   --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmNmEzYTQwZC0yOWIyLTQ2ZjUtYmNkMS0zNmE0ZjY4MzcxNzEiLCJpYXQiOjE2NTgzMTY3Njd9._0__Ubwncx84sp5Q3FhztZB7xkjSKFy9WVTunzZE4DQ' \
-  'http://localhost:6099/v2/notifications/ecf20f0a-86af-4ebf-9012-e48bc6a31174'
+  'http://localhost:6199/v2/notifications/ecf20f0a-86af-4ebf-9012-e48bc6a31174'
 ```
 ##### Using jenkins script
 ```
