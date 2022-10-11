@@ -1,1 +1,3 @@
-     # microservice specific routes
+# microservice specific routes
+
+POST    /notifications/email      uk.gov.hmrc.cipemailstubs.controllers.GovNotifyStubController.email
