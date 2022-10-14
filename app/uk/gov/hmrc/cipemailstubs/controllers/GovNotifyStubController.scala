@@ -16,16 +16,18 @@
 
 package uk.gov.hmrc.cipemailstubs.controllers
 
+import play.api.libs.json.JsValue
+import play.api.mvc.{Action, ControllerComponents}
+import uk.gov.hmrc.cipemailstubs.services.GovNotifyStubService
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
-import play.api.mvc.{Action, AnyContent, ControllerComponents}
+
 import javax.inject.{Inject, Singleton}
-import scala.concurrent.Future
 
 @Singleton()
-class MicroserviceHelloWorldController @Inject()(cc: ControllerComponents)
-    extends BackendController(cc) {
+class GovNotifyStubController @Inject()(cc: ControllerComponents, service: GovNotifyStubService)
+  extends BackendController(cc) {
 
-  def hello(): Action[AnyContent] = Action.async { implicit request =>
-    Future.successful(Ok("Hello world"))
+  def email: Action[JsValue] = Action(parse.json).async { implicit request =>
+    service.email((request.body \ "email_address").as[String])
   }
 }
