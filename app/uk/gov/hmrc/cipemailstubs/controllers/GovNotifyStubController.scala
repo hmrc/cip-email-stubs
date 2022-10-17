@@ -17,7 +17,7 @@
 package uk.gov.hmrc.cipemailstubs.controllers
 
 import play.api.libs.json.JsValue
-import play.api.mvc.{Action, ControllerComponents}
+import play.api.mvc.{Action, AnyContent, ControllerComponents}
 import uk.gov.hmrc.cipemailstubs.services.GovNotifyStubService
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
@@ -29,5 +29,9 @@ class GovNotifyStubController @Inject()(cc: ControllerComponents, service: GovNo
 
   def email: Action[JsValue] = Action(parse.json).async { implicit request =>
     service.email((request.body \ "email_address").as[String])
+  }
+
+  def status(notificationId: String): Action[AnyContent] = Action.async {
+    service.status(notificationId)
   }
 }
