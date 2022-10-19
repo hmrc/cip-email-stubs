@@ -16,7 +16,7 @@
 
 package uk.gov.hmrc.cipemailstubs.services.responses
 
-object EmailResponses {
+object EmailResponses extends CommonResponses {
 
   val notificationResponse =
     """
@@ -60,32 +60,6 @@ object EmailResponses {
       |    }
       |  ],
       |  "status_code": 400
-      |}
-    """.stripMargin
-
-  val authErrorSystemClockError =
-    """
-      |{
-      |  "errors": [
-      |    {
-      |      "error": "AuthError",
-      |      "message": "Error: Your system clock must be accurate to within 30 seconds"
-      |    }
-      |  ],
-      |  "status_code": 403
-      |}
-    """.stripMargin
-
-  val authErrorInvalidTokenError =
-    """
-      |{
-      |  "errors": [
-      |    {
-      |      "error": "AuthError",
-      |      "message": "Invalid token: API key not found"
-      |    }
-      |  ],
-      |  "status_code": 403
       |}
     """.stripMargin
 

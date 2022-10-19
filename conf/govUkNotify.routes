@@ -1,3 +1,4 @@
 # microservice specific routes
 
-POST    /notifications/email      uk.gov.hmrc.cipemailstubs.controllers.GovNotifyStubController.email
+POST    /notifications/email                uk.gov.hmrc.cipemailstubs.controllers.GovNotifyStubController.email
+GET     /notifications/:notificationId      uk.gov.hmrc.cipemailstubs.controllers.GovNotifyStubController.status(notificationId: String)
