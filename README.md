@@ -7,6 +7,7 @@ Backend stub to mock downstream services, currently the stub mocks the following
 - [GovNotify](https://docs.notifications.service.gov.uk/rest-api.html#send-an-email) - sends email to citizen
 - [GovNotify](https://docs.notifications.service.gov.uk/rest-api.html#get-the-status-of-one-message) - get the status of
   a message
+- [InternalAuth](https://github.com/hmrc/internal-auth#token-authentication) - checks authentication token is valid
 
 The default port for cip-email-stubs is 6199.
 
@@ -34,7 +35,7 @@ Sending passcode email test cases
       Any                             => Created
 ```
 
-Notification Id Test cases
+Notification Id test cases
 
 ```
       "validation-d385-4b17-a0b4-23a85c0c5b1a" => BadRequest
@@ -51,6 +52,15 @@ Notification Id Test cases
       "76770ea0-d385-4b17-a0b4-23a85c0c5b1a" => sent
       "86770ea0-d385-4b17-a0b4-23a85c0c5b1a" => not found
       Any                                    => delivered
+```
+
+Internal auth test cases
+
+```
+      ""                    => Unauthorized("No token")
+      "invalid-token"       => Unauthorized("Invalid token")
+      "invalid-permission"  => Forbidden("Not authorized")
+      Any                   => NoContent
 ```
 
 ### Running app
@@ -123,6 +133,28 @@ curl \
     -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmNmEzYTQwZC0yOWIyLTQ2ZjUtYmNkMS0zNmE0ZjY4MzcxNzEiLCJpYXQiOjE2NTgzMTU5MDV9.HdKMVoNm4S3353SvFvjaktb8J5yKsFATsyMjjRDlNxg"
     'https://cip-email-stubs.protected.mdtp/v2/notifications/ecf20f0a-86af-4ebf-9012-e48bc6a31174'
 ```
+
+#### Check authentication token
+
+##### Using curl locally
+
+```
+curl \
+  --verbose \
+  --request POST \
+  --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmNmEzYTQwZC0yOWIyLTQ2ZjUtYmNkMS0zNmE0ZjY4MzcxNzEiLCJpYXQiOjE2NTgzMTY3Njd9._0__Ubwncx84sp5Q3FhztZB7xkjSKFy9WVTunzZE4DQ' \
+  'http://localhost:6199/internal-auth/auth'
+```
+
+##### Using jenkins script
+
+```
+-X POST 
+    -H "Content-type: application/json"
+    -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmNmEzYTQwZC0yOWIyLTQ2ZjUtYmNkMS0zNmE0ZjY4MzcxNzEiLCJpYXQiOjE2NTgzMTU5MDV9.HdKMVoNm4S3353SvFvjaktb8J5yKsFATsyMjjRDlNxg"
+    'https://cip-email-stubs.protected.mdtp/internal-auth/auth'
+```
+
 
 ### License
 
