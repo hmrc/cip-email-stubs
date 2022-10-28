@@ -16,6 +16,7 @@
 
 package uk.gov.hmrc.cipemailstubs.controllers
 
+import play.api.libs.json.Json
 import play.api.mvc.{Action, AnyContent, ControllerComponents}
 import uk.gov.hmrc.play.bootstrap.backend.controller.BackendController
 
@@ -32,7 +33,11 @@ class InternalAuthStubController @Inject()(cc: ControllerComponents)
       case Some("invalid-permission") => Future.successful(Forbidden("Not authorized"))
       case None => Future.successful(Unauthorized("No token"))
       case Some(x) if x.isEmpty => Future.successful(Unauthorized("No token"))
-      case Some(_) => Future.successful(NoContent)
+      case Some(_) => Future.successful(Ok(Json.parse(
+        """{
+          |"retrievals": []
+          |}
+          |""".stripMargin)))
     }
   }
 }
