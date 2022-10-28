@@ -60,7 +60,7 @@ Internal auth test cases
       ""                    => Unauthorized("No token")
       "invalid-token"       => Unauthorized("Invalid token")
       "invalid-permission"  => Forbidden("Not authorized")
-      Any                   => NoContent
+      Any                   => Ok
 ```
 
 ### Running app
@@ -154,7 +154,6 @@ curl \
     -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmNmEzYTQwZC0yOWIyLTQ2ZjUtYmNkMS0zNmE0ZjY4MzcxNzEiLCJpYXQiOjE2NTgzMTU5MDV9.HdKMVoNm4S3353SvFvjaktb8J5yKsFATsyMjjRDlNxg"
     'https://cip-email-stubs.protected.mdtp/internal-auth/auth'
 ```
-
 
 ### License
 
