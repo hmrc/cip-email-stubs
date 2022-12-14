@@ -98,8 +98,7 @@ curl \
   --verbose \
   --request POST \
   --header 'Content-Type: application/json' \
-  --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmNmEzYTQwZC0yOWIyLTQ2ZjUtYmNkMS0zNmE0ZjY4MzcxNzEiLCJpYXQiOjE2NTgzMTU5MDV9.HdKMVoNm4S3353SvFvjaktb8J5yKsFATsyMjjRDlNxg' \
-  --data '{"email":"someone@example.com","template_id":"dce5ac8a-0970-41a0-b993-bde1beab5825","personalisation":{"clientServiceName":"cip-email-service","passcode":"BTXDYC","timeToLive":"1"}}' \
+  --data '{"email_address":"someone@example.com","template_id":"dce5ac8a-0970-41a0-b993-bde1beab5825","personalisation":{"clientServiceName":"cip-email-service","passcode":"BTXDYC","timeToLive":"1"}}' \
   'http://localhost:6199/v2/notifications/email'
 ```
 
@@ -107,10 +106,11 @@ curl \
 
 ```
 -X POST 
-    -H "Content-type: application/json"
-    -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmNmEzYTQwZC0yOWIyLTQ2ZjUtYmNkMS0zNmE0ZjY4MzcxNzEiLCJpYXQiOjE2NTgzMTU5MDV9.HdKMVoNm4S3353SvFvjaktb8J5yKsFATsyMjjRDlNxg"
-    -d "{"email":"someone@example.com","template_id":"dce5ac8a-0970-41a0-b993-bde1beab5825","personalisation":{"clientServiceName":"cip-email-service","passcode":"BTXDYC","timeToLive":"1"}}"    
-    'https://cip-email-stubs.protected.mdtp/v2/notifications/email'
+    -H "Content-type: application/json" -d '{
+        "email_address": "someone@example.com", "template_id": "dce5ac8a-0970-41a0-b993-bde1beab5825", "personalisation": {
+            "clientServiceName": "cip-email-service", "passcode": "BTXDYC", "timeToLive": "1"
+        }
+    }' 'https://cip-email-stubs.protected.mdtp/v2/notifications/email'
 ```
 
 #### Check notification status
@@ -121,7 +121,6 @@ curl \
 curl \
   --verbose \
   --request GET \
-  --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmNmEzYTQwZC0yOWIyLTQ2ZjUtYmNkMS0zNmE0ZjY4MzcxNzEiLCJpYXQiOjE2NTgzMTY3Njd9._0__Ubwncx84sp5Q3FhztZB7xkjSKFy9WVTunzZE4DQ' \
   'http://localhost:6199/v2/notifications/ecf20f0a-86af-4ebf-9012-e48bc6a31174'
 ```
 
@@ -130,7 +129,6 @@ curl \
 ```
 -X GET 
     -H "Content-type: application/json"
-    -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmNmEzYTQwZC0yOWIyLTQ2ZjUtYmNkMS0zNmE0ZjY4MzcxNzEiLCJpYXQiOjE2NTgzMTU5MDV9.HdKMVoNm4S3353SvFvjaktb8J5yKsFATsyMjjRDlNxg"
     'https://cip-email-stubs.protected.mdtp/v2/notifications/ecf20f0a-86af-4ebf-9012-e48bc6a31174'
 ```
 
@@ -142,7 +140,7 @@ curl \
 curl \
   --verbose \
   --request POST \
-  --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmNmEzYTQwZC0yOWIyLTQ2ZjUtYmNkMS0zNmE0ZjY4MzcxNzEiLCJpYXQiOjE2NTgzMTY3Njd9._0__Ubwncx84sp5Q3FhztZB7xkjSKFy9WVTunzZE4DQ' \
+  --header 'Authorization: Bearer fake-token' \
   'http://localhost:6199/internal-auth/auth'
 ```
 
@@ -151,7 +149,7 @@ curl \
 ```
 -X POST 
     -H "Content-type: application/json"
-    -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmNmEzYTQwZC0yOWIyLTQ2ZjUtYmNkMS0zNmE0ZjY4MzcxNzEiLCJpYXQiOjE2NTgzMTU5MDV9.HdKMVoNm4S3353SvFvjaktb8J5yKsFATsyMjjRDlNxg"
+    -H "Authorization: Bearer fake-token"
     'https://cip-email-stubs.protected.mdtp/internal-auth/auth'
 ```
 
